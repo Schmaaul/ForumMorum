@@ -27,6 +27,14 @@
       "creationDate": 1617866129002,
       "likes": 7
     },
+    "888bdbd06cea15": {
+      "content": "<img src=\"https://media1.faz.net/ppmedia/aktuell/wirtschaft/1202114659/1.6028119/default-retina/die-rechnung-geht-auf-daniel.jpg\" width=1 onload='alert(\"Danke, dass ihr XSS implementiert habt!!\");'",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "888bdbd06cea15",
+      "creationDate": 1617866187242,
+      "likes": 5
+    },
     "00e48be73d176b": {
       "content": "Da die neue version gecrashed ist und dies ein backup ist kann man alle html tags verwenden",
       "author": "Cracker der Sich entwickler nennt",
@@ -185,32 +193,8 @@
       "topic": "10002",
       "id": "b9110f86ef37ad",
       "creationDate": 1617867524507,
-      "likes": 2
-    },
-    "d246e978c444a6": {
-      "topic": "10002",
-      "author": "Sorry",
-      "content": "Die neue version von morum zu dem Forum ist nun online Leider könnt ihr nun keine html tags mehr verwenden :( ",
-      "id": "d246e978c444a6",
-      "creationDate": 1617871512904,
-      "likes": 0
-    },
-    "342d76d98c9e61": {
-      "topic": "10002",
-      "author": "HtmlVerwendender",
-      "content": "Ärgerlich",
-      "id": "342d76d98c9e61",
-      "creationDate": 1617878887165,
-      "likes": 1
-    },
-    "06ba2d77d0f278": {
-      "topic": "10002",
-      "author": "Morumstinkt",
-      "content": "Dann muss ich wohl leider wieder auf das Schulforum zurückgreifen ",
-      "id": "06ba2d77d0f278",
-      "creationDate": 1617879042784,
       "likes": 1
     }
   },
-  "update": 1617879676354
+  "update": 1617867524512
 }

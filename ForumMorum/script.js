@@ -1,13 +1,14 @@
 var info;
 let topic = 0;
 let lastUpdate = 0;
+let likedIDs = []
 const addTopicDiv = document.getElementById("topicaddbutton")
 const topicNameInput = document.getElementById("topicNameInput")
 function start(){
     const contentDiv = document.getElementById("contentdiv")
     const topicDiv = document.getElementById("topicdiv")
-    
-    
+
+
     const http = new XMLHttpRequest()
     let url = ""
     if (window.location.href.endsWith("/")){
@@ -15,7 +16,7 @@ function start(){
     } else {
         url = window.location.href + "/info"
     }
-    
+
     http.open("GET", url);
     http.send();
 
@@ -29,7 +30,7 @@ function start(){
         console.log(info)
         info = JSON.parse(info)
         if (info.selected != "nf") {topic = info.selected};
-        
+
         // Loading the Topic div
         topicDiv.innerHTML = ""
         info.topics.forEach(element => {
@@ -51,13 +52,13 @@ function start(){
         if (info.addMsgEnabled){
             renderAddMsg()
         } else (removeAddMsg())
-        
+
     }
 
     function displayRawContent(content){
         contentDiv.innerHTML = content
     }
-    
+
 
 }
 
@@ -70,22 +71,21 @@ function addMsg(){
     http.open("POST",window.location.origin + "/addmsg")
     http.send(JSON.stringify(message))
     console.log(message)
+    message.creationDate = Date.now()
+    message.likes = 0
+    message.id = "dummy"
+    renderMessage(message)
+    /*
     const content = document.getElementById("contentdiv")
-    /*const html = createElementFromHTML(`<div class='message'>
+    const html = createElementFromHTML(`<div class='message'>
       <p><span class="msg-autor">${message.author}</span><span class="msg-date">datum</span></p>
       <hr>
       <p>${message.content}</p>
-      
+
       <p>Likes: 0</p>
-    </div>`)*/
-    const html = createElementFromHTML(`<div class='message' id=${message.id}>
-      <p class="msg-top"><span class="msg-autor">${message.author}</span><span class="msg-date">${d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()+" "+d.getHours()+":"+minutes+":"+seconds}</span></p>
-      
-      <p class="msg-cont">${message.content}</p>
-      
-      <div class="likes noselect" id="l${message.id}" onclick="likeMessage('${message.id}')">❤ <span id="l${message.id}">${message.likes}</span></div>
     </div>`)
     content.insertBefore(html, content.children[content.children.length-1])
+    */
 }
 
 function renderMessage(message) {
@@ -98,15 +98,28 @@ function renderMessage(message) {
     if (seconds.length == 1){
         seconds = "0"+seconds
     }
+    
+
     const content = document.getElementById("contentdiv")
     const html = createElementFromHTML(`<div class='message' id=${message.id}>
       <p class="msg-top"><span class="msg-autor">${message.author}</span><span class="msg-date">${d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()+" "+d.getHours()+":"+minutes+":"+seconds}</span></p>
-      
+
       <p class="msg-cont">${message.content}</p>
-      
+
       <div class="likes noselect" id="l${message.id}" onclick="likeMessage('${message.id}')">❤ <span id="l${message.id}">${message.likes}</span></div>
     </div>`)
-    content.appendChild(html)
+    
+    // add the message to the content div
+    if (document.getElementById("add-msg-div")) {
+      content.insertBefore(html, content.children[content.children.length-1])
+    }
+    else {
+      content.appendChild(html)
+    }
+    // Check if message is already liked
+    if (likedIDs.includes(message.id)){
+        document.getElementById(`l${message.id}`).classList.add("liked")
+    }
 }
 
 function renderAddMsg() {
@@ -144,15 +157,22 @@ function removeAddMsg() {
 }
 
 function likeMessage(id){
+    // Check if message is allowed to be liked
+    if (id == "dummy") {return}
     const likeDiv = document.getElementById(`l${id}`)
     if (likeDiv.classList.contains("liked")) {
         return
     }
+    if (likedIDs.includes(id)) {return};
+    // Add the message to liked Message ids
+    likedIDs.push(id)
+    // Do the things to like the message
     likeDiv.classList.add("liked")
     let likes = parseInt(likeDiv.getElementsByTagName("span")[0].innerHTML) +1
     likeDiv.getElementsByTagName("span")[0].innerHTML = likes
+    // Send the like to the server
     const http = new XMLHttpRequest()
-    console.log("like " + id)
+    //console.log("like " + id)
     http.open("GET",`${window.location.origin}/like/${id}`)
     http.send()
 }
@@ -160,18 +180,18 @@ function likeMessage(id){
 function createElementFromHTML(htmlString) {
     var div = document.createElement('div');
     div.innerHTML = htmlString.trim();
-  
+
     // Change this to div.childNodes to support multiple top-level nodes
-    return div.firstChild; 
+    return div.firstChild;
 }
 
 function extend(){
-    
+
     addTopicDiv.classList.remove("notExtended")
     addTopicDiv.classList.add("extended")
 }
 
-function addTopicButtonHandler(){ 
+function addTopicButtonHandler(){
     addTopicDiv.classList.remove("extended")
     addTopicDiv.classList.add("notExtended")
     if (!isValidTopicName(topicNameInput.value)){
@@ -202,8 +222,8 @@ function isValidTopicName(name){
         const letter = name[i];
         if (notAllowedSymbols.includes(letter)){return false}
     }
-        
-    
+
+
     if (name.length < 3){return false}
     return true
 }

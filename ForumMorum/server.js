@@ -3,12 +3,12 @@ const http = require("http");
 const url = require("url")
 const fs = require("fs")
 const pathModule = require("path")
-const HTMLparse = require("node-html-parser").parse;
+//const HTMLparse = require("node-html-parser").parse;
 const { stringify } = require("querystring");
 const { time } = require("console");
 const filePath = "\\webdav.gym-altona.de@SSL\DavWWWRoot\Groups\Informatik 1112 Schr 2021\DavidFelixIliasPaulWebsite"
 const crypto = require("crypto");
-const { valid } = require("node-html-parser");
+//const { valid } = require("node-html-parser");
 
 const server = http.createServer(function(req, res){
 
@@ -42,15 +42,15 @@ const server = http.createServer(function(req, res){
         }
         return
     }
-    
-    
+
+
     if (path.endsWith("/info")) {
         path = path.split("/")
         path.pop()
         path = path.join("/")
-        
+
         var responseJSON = {};
-        
+
         responseJSON.topics = JSON.parse(fs.readFileSync("topics/topicList.json", "utf8",(err) => {if (err) throw err})).topics
 
         if (path == "/index.html" || path == ""){
@@ -152,11 +152,11 @@ const server = http.createServer(function(req, res){
         }
         )
     console.log(path)
-    
 
-    
 
-    
+
+
+
 })
 
 
@@ -172,15 +172,14 @@ function isValidTopicName(name){
         const letter = name[i];
         if (notAllowedSymbols.includes(letter)){return false}
     }
-        
-    
+
+
     if (name.length < 3){return false}
     return true
 }
 
-
 function addTopic(name) {
-    
+
     if (!isValidTopicName(name)) {return false}
     var topicList
     fs.readFile("topics/topicList.json", "utf8", (err, file) => {
@@ -189,12 +188,12 @@ function addTopic(name) {
             return false;
         }
         topicList = file
-    
+
         topicList = JSON.parse(topicList)
         const topicid = topicList.idindex;
         topicList.idindex++;
         topicList.topics.push({"name":name,"id":topicid,"creationDate":Date.now()})
-        
+
         fs.writeFile("topics/topicList.json", JSON.stringify(topicList, null, 2), (err) => {
             if (err) throw err;
             fs.writeFileSync(`topics/${topicid}.json`, JSON.stringify(createEmptyTopic(name, topicid), null, 2))
@@ -209,7 +208,7 @@ function isTopic(id){
     list.topics.forEach(element => {
         if (element.id.toString() === id.toString()) {
             is = true;
-            
+
         }
     })
     return is;
@@ -236,13 +235,20 @@ function deleteTopics() {
     topicList.topics = []
     topicList.idindex = 10000
     fs.writeFileSync("topics/topicList.json", JSON.stringify(topicList, null, 2))
-    fs.writeFileSync("topics/messageMap.json", "{}")
+    fs.writeFileSync("topics/messagemap.json", "{}")
 }
 
-function addMsg(message){
+function addMsg(INmessage){
+    let message = {}
+    message.topic = INmessage.topic
+    message.author = INmessage.author
+    message.content = INmessage.content
     // Check if message is valid
     if (!(parseInt(message.topic)>=10000)) return;
     if (!isTopic(message.topic)) return;
+
+    if (!isValidMessageContent(message.content)) return;
+    if (!isValidMessageAuthor(message.author)) return;
 
     // Create message info
     message.id = crypto.randomBytes(7).toString("hex")
@@ -256,7 +262,7 @@ function addMsg(message){
     messageMap[message.id] = message.topic
     messageMap = JSON.stringify(messageMap, null, 2)
     fs.writeFileSync("topics/messagemap.json", messageMap)
-    
+
     //to topic file
     var topicFile = fs.readFileSync(`topics/${message.topic}.json`, "utf8")
     topicFile = JSON.parse(topicFile)
@@ -264,7 +270,7 @@ function addMsg(message){
     topicFile.update = Date.now()
     topicFile = JSON.stringify(topicFile, null, 2)
     fs.writeFileSync(`topics/${message.topic}.json`, topicFile)
-    
+
 }
 
 function removeMsg(id){
@@ -290,6 +296,7 @@ function likeMessage(id) {
     var topicFile = fs.readFileSync(`topics/${messageTopic}.json`, "utf8")
     topicFile = JSON.parse(topicFile)
     var likes = topicFile.messages[id].likes++
+    topicFile.update = Date.now()
     topicFile = JSON.stringify(topicFile, null, 2)
     fs.writeFileSync(`topics/${messageTopic}.json`, topicFile)
     return likes;
@@ -302,4 +309,29 @@ function isTopicFileNewer(topicId, time) {
     //console.log(time-topicFile.update)
     if (topicFile.update > time) return true;
     return false
+}
+
+function isValidMessageContent(content) {
+    const forbiddenChars = ["<",">",`\\`,"/"]
+    const maxMessageLength = 1000
+    const minMessageLength = 1
+    if (content.length > maxMessageLength) return false;
+    if (content.length < minMessageLength) return false;
+    for (let i = 0; i < forbiddenChars.length; i++) {
+        const char = forbiddenChars[i];
+        if (content.includes(char)) return false;
+    }
+    return true
+}
+function isValidMessageAuthor(content) {
+    const forbiddenChars = ["<",">",`\\`,"/"]
+    const maxMessageLength = 30
+    const minMessageLength = 1
+    if (content.length > maxMessageLength) return false;
+    if (content.length < minMessageLength) return false;
+    for (let i = 0; i < forbiddenChars.length; i++) {
+        const char = forbiddenChars[i];
+        if (content.includes(char)) return false;
+    }
+    return true
 }
