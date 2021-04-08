@@ -1,0 +1,136 @@
+{
+  "name": "Liebe Schulfamilie",
+  "id": 10002,
+  "creationDate": 1617866013944,
+  "messages": {
+    "5ca1bc0176efe4": {
+      "content": "Ich möchte mich bedanken",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "5ca1bc0176efe4",
+      "creationDate": 1617866026415,
+      "likes": 7
+    },
+    "071e1e5af7788e": {
+      "content": "<img src=\"https://media1.faz.net/ppmedia/aktuell/wirtschaft/1202114659/1.6028119/default-retina/die-rechnung-geht-auf-daniel.jpg\">",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "071e1e5af7788e",
+      "creationDate": 1617866070902,
+      "likes": 3
+    },
+    "a46178a17ab7a2": {
+      "content": "Wir danken dir ",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "a46178a17ab7a2",
+      "creationDate": 1617866129002,
+      "likes": 4
+    },
+    "888bdbd06cea15": {
+      "content": "<img src=\"https://media1.faz.net/ppmedia/aktuell/wirtschaft/1202114659/1.6028119/default-retina/die-rechnung-geht-auf-daniel.jpg\" width=1 onload='alert(\"Danke, dass ihr XSS implementiert habt!!\");'",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "888bdbd06cea15",
+      "creationDate": 1617866187242,
+      "likes": 3
+    },
+    "00e48be73d176b": {
+      "content": "Da die neue version gecrashed ist und dies ein backup ist kann man alle html tags verwenden",
+      "author": "Cracker der Sich entwickler nennt",
+      "topic": "10002",
+      "id": "00e48be73d176b",
+      "creationDate": 1617866284398,
+      "likes": 3
+    },
+    "74cfb047967620": {
+      "content": "ich finds super",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "74cfb047967620",
+      "creationDate": 1617866326939,
+      "likes": 2
+    },
+    "4495293b8c8b48": {
+      "content": "Du cracker",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "4495293b8c8b48",
+      "creationDate": 1617866364142,
+      "likes": 1
+    },
+    "13d53eaa01f930": {
+      "content": "ein kleiner verbesserungsvorschlag: nicht das gesamte design neu laden wenn es einen neuen beitrag gibt, sonst verliert man immer seine eingaben wg neuladen",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "13d53eaa01f930",
+      "creationDate": 1617866465523,
+      "likes": 1
+    },
+    "681d2198932b05": {
+      "content": "Kann sich Linus bitte verzwacken gehen?\n",
+      "author": "Jannis",
+      "topic": "10002",
+      "id": "681d2198932b05",
+      "creationDate": 1617866508708,
+      "likes": 2
+    },
+    "621f7291f0487f": {
+      "content": "Wurden da schlechte Erfahrungen gemacht bei dem Vorschlag gebenden?",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "621f7291f0487f",
+      "creationDate": 1617866547716,
+      "likes": 2
+    },
+    "30efe6a5d096a3": {
+      "content": "Was laberst du ya salame ya manyak\n",
+      "author": "Linus",
+      "topic": "10002",
+      "id": "30efe6a5d096a3",
+      "creationDate": 1617866548568,
+      "likes": 3
+    },
+    "1cc6a8d2b805b1": {
+      "content": "Ich mag HELENE ziemlich gerne",
+      "author": "Felix",
+      "topic": "10002",
+      "id": "1cc6a8d2b805b1",
+      "creationDate": 1617866599426,
+      "likes": 6
+    },
+    "7561d900085e42": {
+      "content": "Meine Mutter ist ziemlich steil",
+      "author": "David",
+      "topic": "10002",
+      "id": "7561d900085e42",
+      "creationDate": 1617866625682,
+      "likes": 5
+    },
+    "e426d1a748036a": {
+      "content": "Ich bringe bangerjokes\n",
+      "author": "Felix ",
+      "topic": "10002",
+      "id": "e426d1a748036a",
+      "creationDate": 1617866644285,
+      "likes": 3
+    },
+    "68b6ff5a3b1aef": {
+      "content": "gay gay goao",
+      "author": "David",
+      "topic": "10002",
+      "id": "68b6ff5a3b1aef",
+      "creationDate": 1617866675999,
+      "likes": 2
+    },
+    "1ccae8f03e3112": {
+      "content": "identitätsdiebstahl ist kein joke jungs ich empfehle es nicht, straftaten können auch ungünstige folgen haben",
+      "author": "Anonym",
+      "topic": "10002",
+      "id": "1ccae8f03e3112",
+      "creationDate": 1617866885796,
+      "likes": 0
+    }
+  },
+  "update": 1617866885801
+}

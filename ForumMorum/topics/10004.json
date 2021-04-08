@@ -1,0 +1,40 @@
+{
+  "name": "moin",
+  "id": 10004,
+  "creationDate": 1617866390937,
+  "messages": {
+    "7bfdaac949e335": {
+      "content": "cringe",
+      "author": "Anonym",
+      "topic": "10004",
+      "id": "7bfdaac949e335",
+      "creationDate": 1617866489284,
+      "likes": 8
+    },
+    "26661e365af780": {
+      "content": "Lern die Insider\n",
+      "author": "Anonym",
+      "topic": "10004",
+      "id": "26661e365af780",
+      "creationDate": 1617866700997,
+      "likes": 1
+    },
+    "87e29cd08736a7": {
+      "content": "cringe",
+      "author": "Anonym",
+      "topic": "10004",
+      "id": "87e29cd08736a7",
+      "creationDate": 1617866740591,
+      "likes": 1
+    },
+    "96f423ffa677c1": {
+      "content": "lern die insider",
+      "author": "Anonym",
+      "topic": "10004",
+      "id": "96f423ffa677c1",
+      "creationDate": 1617866748866,
+      "likes": 1
+    }
+  },
+  "update": 1617866748871
+}
